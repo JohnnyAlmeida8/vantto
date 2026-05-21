@@ -868,64 +868,93 @@ footer {
   .nav-links { display: none; }
   .hamburger { display: flex; }
 
-  .hero { padding: 0 5vw 3.5rem; }
+  .hero { padding: 0 5vw 4rem; }
   .hero-bottom { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
-  .hero-slogan { font-size: 0.95rem; }
+  .hero-slogan { font-size: 0.9rem; }
 
   .stats-bar { grid-template-columns: repeat(2, 1fr); }
+  .stat-item:nth-child(2) { border-right: none; }
 
   .sobre { grid-template-columns: 1fr; gap: 2.5rem; padding: 4rem 5vw; }
-  .sobre-visual { height: 220px; }
+  .sobre-visual { height: 260px; order: -1; }
 
   .produtos { padding: 4rem 5vw; }
   .produtos-header { flex-direction: column; align-items: flex-start; }
-  .produtos-grid { grid-template-columns: repeat(2, 1fr); }
+  /* Tablet: 2 colunas normais, sem o truque de 6 colunas */
+  .produtos-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .produtos-grid .produto-card { grid-column: span 1; }
+  .produtos-grid .produto-card:nth-child(4) { grid-column: span 1; }
+  .produtos-grid .produto-card:nth-child(5) { grid-column: span 1; }
 
   .diferenciais { padding: 4rem 5vw; }
   .dif-grid { grid-template-columns: 1fr; }
 
   .cta-final { padding: 5rem 5vw; }
   .cta-actions { flex-direction: column; align-items: center; }
+  .btn-primary, .btn-ghost { width: 100%; max-width: 320px; text-align: center; }
 
   footer { flex-direction: column; gap: 1rem; text-align: center; padding: 2rem 5vw; }
 }
 
 /* ── MOBILE (max 600px) ── */
 @media (max-width: 600px) {
-  nav { padding: 0.9rem 5vw; }
+  nav { padding: 0.9rem 5vw; position: fixed; }
   .btn-nav { display: none; }
 
   .hero { padding: 0 5vw 3rem; min-height: 100svh; }
-  .hero-tag { font-size: 0.65rem; }
-  .hero-headline { font-size: clamp(4rem, 18vw, 6rem); }
-  .hero-sub { font-size: 1rem; }
+  .hero-tag { font-size: 0.6rem; letter-spacing: 0.22em; }
+  .hero-headline { font-size: clamp(3.8rem, 17vw, 5.5rem); }
+  .hero-sub { font-size: 0.95rem; letter-spacing: 0.08em; }
   .hero-cta-group { flex-direction: column; width: 100%; }
-  .btn-primary, .btn-ghost { width: 100%; text-align: center; }
+  .btn-primary, .btn-ghost { width: 100%; text-align: center; padding: 0.85rem 1.5rem; }
   .hero-slogan { display: none; }
+  .hero-bottom { padding-top: 1.5rem; gap: 1.25rem; }
 
   .stats-bar { grid-template-columns: repeat(2, 1fr); }
-  .stat-item { padding: 1.5rem; }
-  .stat-num { font-size: 2.4rem; }
+  .stat-item { padding: 1.25rem 1rem; border-right: 1px solid var(--graphite-mid); }
+  .stat-item:nth-child(2),
+  .stat-item:nth-child(4) { border-right: none; }
+  .stat-num { font-size: 2.2rem; }
+  .stat-label { font-size: 0.62rem; letter-spacing: 0.14em; }
 
-  .sobre { padding: 3.5rem 5vw; gap: 2rem; }
-  .sobre-visual { height: 180px; }
-  .sobre-bg-letter { font-size: 16rem; }
+  .sobre { padding: 3rem 5vw; gap: 2rem; flex-direction: column; }
+  .sobre-visual { height: 200px; }
+  .sobre-logo { width: 90%; }
   .badges { gap: 0.4rem; }
-  .badge { font-size: 0.65rem; padding: 0.25rem 0.6rem; }
+  .badge { font-size: 0.62rem; padding: 0.25rem 0.55rem; }
+  .section-title { font-size: clamp(2rem, 8vw, 3rem); }
+  .section-body { font-size: 0.88rem; }
 
-  .produtos { padding: 3.5rem 5vw; }
-  .produtos-grid { grid-template-columns: 1fr; }
-  .produto-card { padding: 1.5rem; }
+  .produtos { padding: 3rem 5vw; }
+  .produtos-grid {
+    grid-template-columns: 1fr;
+  }
+  .produtos-grid .produto-card { grid-column: span 1 !important; }
+  .produto-card { padding: 0; }
+  .produto-card > .produto-name,
+  .produto-card > .produto-tag,
+  .produto-card > .produto-desc { padding-left: 1.25rem; padding-right: 1.25rem; }
+  .produto-card > .produto-name { padding-top: 1rem; }
+  .produto-card > .produto-desc { padding-bottom: 1.25rem; }
+  .produto-img-wrap { height: 220px; }
 
-  .diferenciais { padding: 3.5rem 5vw; }
-  .dif-card { padding: 2rem 1.5rem; }
-  .dif-num { font-size: 2.5rem; }
+  .diferenciais { padding: 3rem 5vw; }
+  .dif-card { padding: 1.75rem 1.25rem; }
+  .dif-num { font-size: 2.2rem; }
+  .dif-title { font-size: 0.9rem; }
+  .dif-body { font-size: 0.82rem; }
 
-  .cta-final { padding: 4rem 5vw; }
-  .cta-title { font-size: clamp(2.4rem, 10vw, 4rem); }
+  .cta-final { padding: 3.5rem 5vw; }
+  .cta-title { font-size: clamp(2.2rem, 9vw, 3.5rem); }
+  .cta-body { font-size: 0.88rem; }
+  .cta-actions { gap: 0.75rem; }
 
-  footer { padding: 1.75rem 5vw; gap: 0.75rem; }
-  .footer-copy { font-size: 0.65rem; }
+  footer { padding: 1.5rem 5vw; gap: 0.6rem; }
+  .footer-logo { font-size: 1.1rem; }
+  .footer-copy { font-size: 0.62rem; }
+  .footer-location { font-size: 0.65rem; }
 }
 
 .produto-img-wrap {
