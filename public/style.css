@@ -432,10 +432,10 @@ nav {
 .produtos-grid .produto-card {
   grid-column: span 2;
 }
-.produtos-grid .produto-card:nth-child(4) {
+.produtos-grid .produto-card:nth-of-type(4) {
   grid-column: 2 / span 2;
 }
-.produtos-grid .produto-card:nth-child(5) {
+.produtos-grid .produto-card:nth-of-type(5) {
   grid-column: 4 / span 2;
 }
 
@@ -875,8 +875,8 @@ footer {
     grid-template-columns: repeat(2, 1fr);
   }
   .produtos-grid .produto-card { grid-column: span 1; }
-  .produtos-grid .produto-card:nth-child(4) { grid-column: span 1; }
-  .produtos-grid .produto-card:nth-child(5) { grid-column: span 1; }
+  .produtos-grid .produto-card:nth-of-type(4) { grid-column: span 1; }
+  .produtos-grid .produto-card:nth-of-type(5) { grid-column: span 1; }
 
   .diferenciais { padding: 4rem 5vw; }
   .dif-grid { grid-template-columns: 1fr; }
@@ -989,4 +989,364 @@ footer {
 }
 .produto-card:hover .produto-img {
   transform: translateY(-5px) scale(1.03);
+}
+
+/* ── MODAL PRODUTO ── */
+.produto-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(0,0,0,0.88);
+  backdrop-filter: blur(10px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+}
+.produto-modal-overlay.open { display: flex; }
+.produto-modal {
+  background: #111;
+  border: 1px solid #2a2a2a;
+  border-top: 2px solid var(--green);
+  max-width: 860px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  position: relative;
+}
+.produto-modal::-webkit-scrollbar { width: 3px; }
+.produto-modal::-webkit-scrollbar-thumb { background: var(--green); }
+.modal-close {
+  position: absolute;
+  top: 1rem; right: 1rem;
+  background: none;
+  border: none;
+  color: #555;
+  font-size: 1.1rem;
+  cursor: pointer;
+  z-index: 2;
+  padding: 0.25rem 0.5rem;
+  transition: color 0.2s;
+}
+.modal-close:hover { color: var(--white); }
+.modal-inner {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+}
+.modal-img-wrap {
+  background: linear-gradient(160deg, #181818, #0e0e0e);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  padding: 2rem;
+  border-right: 1px solid #1e1e1e;
+}
+.modal-img {
+  max-height: 380px;
+  width: auto;
+  object-fit: contain;
+  mix-blend-mode: screen;
+}
+.modal-info {
+  padding: 2.5rem 2rem 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.modal-tag {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--green);
+}
+.modal-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2.8rem;
+  letter-spacing: 0.06em;
+  color: var(--white);
+  line-height: 1;
+}
+.modal-desc {
+  font-size: 0.85rem;
+  color: #888;
+  line-height: 1.7;
+}
+.modal-specs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: #1e1e1e;
+  border: 1px solid #1e1e1e;
+}
+.modal-spec {
+  background: #111;
+  padding: 0.75rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+.spec-label {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: #444;
+}
+.spec-val {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--white);
+}
+.modal-beneficios { }
+.modal-ben-title {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #444;
+  margin-bottom: 0.6rem;
+}
+.modal-beneficios ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+.modal-beneficios li {
+  font-size: 0.82rem;
+  color: #888;
+  padding-left: 1rem;
+  position: relative;
+}
+.modal-beneficios li::before {
+  content: '—';
+  color: var(--green);
+  position: absolute;
+  left: 0;
+  font-size: 0.7rem;
+}
+.modal-cta {
+  display: inline-block;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--black);
+  background: var(--green);
+  border: none;
+  padding: 0.85rem 1.5rem;
+  cursor: pointer;
+  text-decoration: none;
+  text-align: center;
+  margin-top: auto;
+  transition: opacity 0.2s;
+}
+.modal-cta:hover { opacity: 0.85; }
+
+@media (max-width: 640px) {
+  .modal-inner { grid-template-columns: 1fr; }
+  .modal-img-wrap { min-height: 220px; border-right: none; border-bottom: 1px solid #1e1e1e; }
+  .modal-img { max-height: 200px; }
+  .modal-info { padding: 1.5rem; }
+  .modal-title { font-size: 2rem; }
+  .modal-specs { grid-template-columns: 1fr 1fr; }
+}
+
+/* ── LGPD BANNER ── */
+.lgpd-banner {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  z-index: 999;
+  background: rgba(15,15,15,0.97);
+  backdrop-filter: blur(16px);
+  border-top: 1px solid rgba(125,255,77,0.15);
+  padding: 1.25rem 5vw;
+  transform: translateY(100%);
+  transition: transform 0.4s ease;
+}
+.lgpd-banner.visible { transform: translateY(0); }
+.lgpd-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  flex-wrap: wrap;
+}
+.lgpd-title {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--green);
+  display: block;
+  margin-bottom: 0.4rem;
+}
+.lgpd-text p {
+  font-size: 0.78rem;
+  color: #888;
+  line-height: 1.6;
+  max-width: 680px;
+}
+.lgpd-text strong { color: #aaa; }
+.lgpd-link {
+  color: var(--green);
+  text-decoration: underline;
+  cursor: pointer;
+}
+.lgpd-actions {
+  display: flex;
+  gap: 0.75rem;
+  flex-shrink: 0;
+  flex-wrap: wrap;
+}
+.lgpd-btn-accept {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--black);
+  background: var(--green);
+  border: none;
+  padding: 0.65rem 1.4rem;
+  cursor: pointer;
+  transition: opacity 0.2s;
+}
+.lgpd-btn-accept:hover { opacity: 0.85; }
+.lgpd-btn-reject {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #666;
+  background: transparent;
+  border: 1px solid #333;
+  padding: 0.65rem 1.2rem;
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s;
+}
+.lgpd-btn-reject:hover { color: var(--white); border-color: #555; }
+
+/* ── PRIVACY MODAL ── */
+.privacy-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(0,0,0,0.85);
+  backdrop-filter: blur(8px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+.privacy-overlay.open { display: flex; }
+.privacy-modal {
+  background: #141414;
+  border: 1px solid #2a2a2a;
+  border-top: 2px solid var(--green);
+  max-width: 720px;
+  width: 100%;
+  max-height: 85vh;
+  overflow-y: auto;
+  position: relative;
+  padding: 2.5rem;
+}
+.privacy-modal::-webkit-scrollbar { width: 3px; }
+.privacy-modal::-webkit-scrollbar-thumb { background: var(--green); }
+.privacy-close {
+  position: absolute;
+  top: 1rem; right: 1rem;
+  background: none;
+  border: none;
+  color: #555;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: color 0.2s;
+  line-height: 1;
+  padding: 0.25rem 0.5rem;
+}
+.privacy-close:hover { color: var(--white); }
+.privacy-tag {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--green);
+  margin-bottom: 0.75rem;
+}
+.privacy-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2.4rem;
+  letter-spacing: 0.04em;
+  color: var(--white);
+  margin-bottom: 0.3rem;
+}
+.privacy-updated {
+  font-size: 0.72rem;
+  color: #555;
+  margin-bottom: 2rem;
+  letter-spacing: 0.06em;
+}
+.privacy-section {
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #1e1e1e;
+}
+.privacy-section:last-child { border-bottom: none; margin-bottom: 0; }
+.privacy-section h3 {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--white);
+  margin-bottom: 0.6rem;
+}
+.privacy-section p {
+  font-size: 0.82rem;
+  color: #888;
+  line-height: 1.7;
+  margin-bottom: 0.5rem;
+}
+.privacy-section ul {
+  list-style: none;
+  padding: 0;
+  margin: 0.5rem 0;
+}
+.privacy-section ul li {
+  font-size: 0.82rem;
+  color: #888;
+  line-height: 1.7;
+  padding-left: 1rem;
+  position: relative;
+}
+.privacy-section ul li::before {
+  content: '—';
+  color: var(--green);
+  position: absolute;
+  left: 0;
+  font-size: 0.7rem;
+}
+.privacy-section strong { color: #aaa; }
+
+/* LGPD mobile */
+@media (max-width: 600px) {
+  .lgpd-inner { flex-direction: column; gap: 1rem; }
+  .lgpd-actions { width: 100%; }
+  .lgpd-btn-accept, .lgpd-btn-reject { flex: 1; text-align: center; }
+  .privacy-modal { padding: 1.5rem; }
+  .privacy-title { font-size: 1.8rem; }
 }
