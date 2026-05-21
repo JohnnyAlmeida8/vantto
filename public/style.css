@@ -432,10 +432,10 @@ nav {
 .produtos-grid .produto-card {
   grid-column: span 2;
 }
-.produtos-grid .produto-card:nth-of-type(4) {
+.produtos-grid .card-4 {
   grid-column: 2 / span 2;
 }
-.produtos-grid .produto-card:nth-of-type(5) {
+.produtos-grid .card-5 {
   grid-column: 4 / span 2;
 }
 
@@ -875,8 +875,8 @@ footer {
     grid-template-columns: repeat(2, 1fr);
   }
   .produtos-grid .produto-card { grid-column: span 1; }
-  .produtos-grid .produto-card:nth-of-type(4) { grid-column: span 1; }
-  .produtos-grid .produto-card:nth-of-type(5) { grid-column: span 1; }
+  .produtos-grid .card-4 { grid-column: span 1; }
+  .produtos-grid .card-5 { grid-column: span 1; }
 
   .diferenciais { padding: 4rem 5vw; }
   .dif-grid { grid-template-columns: 1fr; }
@@ -918,10 +918,10 @@ footer {
   .section-body { font-size: 0.88rem; }
 
   .produtos { padding: 3rem 5vw; }
-  .produtos-grid {
-    grid-template-columns: 1fr;
-  }
+  .produtos-grid { grid-template-columns: 1fr; }
   .produtos-grid .produto-card { grid-column: span 1 !important; }
+  .produtos-grid .card-4 { grid-column: span 1 !important; }
+  .produtos-grid .card-5 { grid-column: span 1 !important; }
   .produto-card { padding: 0; }
   .produto-card > .produto-name,
   .produto-card > .produto-tag,
