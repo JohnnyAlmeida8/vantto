@@ -104,6 +104,26 @@ nav {
   overflow: hidden;
 }
 
+/* ✅ NOVO — slider como background absoluto */
+.hero-slider {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+/* ✅ NOVO — cada slide cobre o slider inteiro */
+.hero-slide {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 0.8s ease;
+}
+.hero-slide.active {
+  opacity: 1;
+}
+
 .hero-bg {
   position: absolute;
   inset: 0;
@@ -111,26 +131,25 @@ nav {
     linear-gradient(rgba(125,255,77,0.025) 1px, transparent 1px),
     linear-gradient(90deg, rgba(125,255,77,0.025) 1px, transparent 1px);
   background-size: 64px 64px;
+  z-index: 1; /* ✅ acima do slider */
 }
 
 .hero-glow {
   position: absolute;
-  top: 20%;
-  right: 5%;
-  width: 500px;
-  height: 500px;
+  top: 20%; right: 5%;
+  width: 500px; height: 500px;
   background: radial-gradient(circle, rgba(125,255,77,0.06) 0%, transparent 68%);
   pointer-events: none;
+  z-index: 1; /* ✅ */
 }
 
 .hero-glow2 {
   position: absolute;
-  bottom: 10%;
-  left: 15%;
-  width: 300px;
-  height: 300px;
+  bottom: 10%; left: 15%;
+  width: 300px; height: 300px;
   background: radial-gradient(circle, rgba(125,255,77,0.04) 0%, transparent 70%);
   pointer-events: none;
+  z-index: 1; /* ✅ */
 }
 
 .hero-tag {
