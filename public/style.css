@@ -127,11 +127,13 @@ nav {
 .hero-bg {
   position: absolute;
   inset: 0;
-  background-image:
-    linear-gradient(rgba(125,255,77,0.025) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(125,255,77,0.025) 1px, transparent 1px);
-  background-size: 64px 64px;
-  z-index: 1; /* ✅ acima do slider */
+  background: linear-gradient(
+    to top,
+    rgba(0,0,0,0.85) 0%,      /* base embaixo — onde fica o texto */
+    rgba(0,0,0,0.3)  50%,
+    rgba(0,0,0,0.1)  100%
+  );
+  z-index: 1;
 }
 
 .hero-glow {
