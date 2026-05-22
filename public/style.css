@@ -104,22 +104,12 @@ nav {
   overflow: hidden;
 }
 
-/* ✅ NOVO — slider como background absoluto */
-.hero-slider::after {
-  content: '';
+.hero-slider {
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    to top,
-    rgba(0,0,0,0.80) 0%,
-    rgba(0,0,0,0.25) 50%,
-    rgba(0,0,0,0.05) 100%
-  );
-  z-index: 1;
-  pointer-events: none;
+  z-index: 0;
 }
 
-/* ✅ NOVO — cada slide cobre o slider inteiro */
 .hero-slide {
   position: absolute;
   inset: 0;
@@ -132,16 +122,29 @@ nav {
   opacity: 1;
 }
 
-.hero-bg {
+.hero-slider::after {
+  content: '';
   position: absolute;
   inset: 0;
   background: linear-gradient(
     to top,
-    rgba(0,0,0,0.85) 0%,      /* base embaixo — onde fica o texto */
-    rgba(0,0,0,0.3)  50%,
-    rgba(0,0,0,0.1)  100%
+    rgba(0,0,0,0.82) 0%,
+    rgba(0,0,0,0.25) 55%,
+    rgba(0,0,0,0.05) 100%
   );
-  z-index: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(125,255,77,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(125,255,77,0.025) 1px, transparent 1px);
+  background-size: 64px 64px;
+  z-index: 2;
+  pointer-events: none;
 }
 
 .hero-glow {
@@ -150,7 +153,7 @@ nav {
   width: 500px; height: 500px;
   background: radial-gradient(circle, rgba(125,255,77,0.06) 0%, transparent 68%);
   pointer-events: none;
-  z-index: 0; /* ✅ */
+  z-index: 2;
 }
 
 .hero-glow2 {
@@ -159,7 +162,7 @@ nav {
   width: 300px; height: 300px;
   background: radial-gradient(circle, rgba(125,255,77,0.04) 0%, transparent 70%);
   pointer-events: none;
-  z-index: 0; /* ✅ */
+  z-index: 2;
 }
 
 .hero-tag {
@@ -174,7 +177,7 @@ nav {
   gap: 0.75rem;
   margin-bottom: 1.5rem;
   position: relative;
-  z-index: 2;
+  z-index: 3;
 }
 .hero-tag::before {
   content: '';
@@ -191,7 +194,7 @@ nav {
   letter-spacing: 0.02em;
   color: var(--white);
   position: relative;
-  z-index: 2;
+  z-index: 3;
   margin-bottom: 0.2em;
 }
 .hero-headline .g { color: var(--green); }
@@ -203,7 +206,7 @@ nav {
   letter-spacing: 0.12em;
   color: var(--gray-mid);
   position: relative;
-  z-index: 2;
+  z-index: 3;
   margin-bottom: 2.5rem;
   text-transform: uppercase;
 }
@@ -213,22 +216,30 @@ nav {
   align-items: center;
   justify-content: space-between;
   position: relative;
-  z-index: 2;
+  z-index: 3;
   padding-top: 2.5rem;
   border-top: 1px solid rgba(255,255,255,0.05);
-}
-
-.slider-progress,
-.slider-credit,
-.slider-controls {
-  position: relative;
-  z-index: 3;
 }
 
 .hero-cta-group {
   display: flex;
   gap: 1rem;
   align-items: center;
+}
+
+.hero-slogan {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.1rem;
+  letter-spacing: 0.25em;
+  color: var(--gray);
+}
+.hero-slogan em { color: var(--green); font-style: normal; }
+
+.slider-progress,
+.slider-credit,
+.slider-controls {
+  position: relative;
+  z-index: 4;
 }
 
 .btn-primary {
