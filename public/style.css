@@ -105,10 +105,18 @@ nav {
 }
 
 /* ✅ NOVO — slider como background absoluto */
-.hero-slider {
+.hero-slider::after {
+  content: '';
   position: absolute;
   inset: 0;
-  z-index: 0;
+  background: linear-gradient(
+    to top,
+    rgba(0,0,0,0.80) 0%,
+    rgba(0,0,0,0.25) 50%,
+    rgba(0,0,0,0.05) 100%
+  );
+  z-index: 1;
+  pointer-events: none;
 }
 
 /* ✅ NOVO — cada slide cobre o slider inteiro */
